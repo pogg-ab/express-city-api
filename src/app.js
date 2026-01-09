@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const path = require('path');
 
 const app = express();
 
@@ -8,6 +9,8 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
+// Serve a minimal static UI from the `public` folder
+app.use(express.static(path.join(__dirname, '..', 'public')));
 let cities = [];
 let idCounter = 1;
 
@@ -37,6 +40,10 @@ function validateCityPayload(body, { partial = false } = {}) {
 }
 
 app.get('/cities', (req, res) => {
+  // If the client prefers HTML (a browser), serve the UI page.
+  if (req.accepts && req.accepts('html')) {
+    return res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  }
   res.json(cities);
 });
 

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>City API — Explorer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <h1>City Explorer</h1>
+      <p class="muted">Simple frontend for the City API — add, edit or remove cities.</p>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <aside class="panel panel-form">
+      <h2>Add City</h2>
+      <form id="addForm" class="form">
+        <input id="name" placeholder="City name" required autocomplete="off" />
+        <input id="country" placeholder="Country" autocomplete="off" />
+        <input id="population" placeholder="Population" type="number" min="0" />
+        <div class="form-actions"><button type="submit" class="btn primary">Add City</button></div>
+      </form>
+      <div class="hint">Tip: click a city card to edit.</div>
+    </aside>
+
+    <section class="panel panel-list">
+      <div class="list-header">
+        <h2>Cities</h2>
+        <input id="filter" placeholder="Search by name or country" />
+      </div>
+      <div id="citiesList" class="grid"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="/main.js"></script>
+</body>
+</html>
